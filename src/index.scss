@@ -1,0 +1,32 @@
+@font-face {
+  font-family: Open-Sans;
+  src: url('./fonts/OpenSans-Regular.ttf');
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Open Sans, serif;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li{
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #F3F7FA;
+  color: #4A4A4A;
+}
+ul,
+ol{
+  list-style: none;
+}
+label{
+  cursor: pointer;
+}

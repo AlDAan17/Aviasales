@@ -1,0 +1,45 @@
+.filter {
+  background: #fff;
+  width: 232px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .filter__header {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+  }
+
+  .filter__content {
+    font-size: 13px;
+    cursor: pointer;
+
+    .filter__item {
+      display: block;
+      margin-top: 22px;
+    }
+
+    .checkbox {
+      outline: none;
+      appearance: none;
+      vertical-align: -5px;
+      cursor: inherit;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url('../images/checkbox.svg') no-repeat;
+        margin-right: 10px;
+      }
+
+      &:checked:after {
+        background: url('../images/checkbox-outline.svg') no-repeat,
+        url('../images/checkbox-mark.svg') no-repeat 50% 50%;
+      }
+    }
+  }
+}
