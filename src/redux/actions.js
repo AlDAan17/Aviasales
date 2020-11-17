@@ -53,7 +53,7 @@ export const asyncGetTickets = () => {
             dispatch(getTickets(ticketsWithIds));
         }
         catch (e) {
-            console.log(e)
+            console.log('PIZDEC', e)
         }
     };
 };

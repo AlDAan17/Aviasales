@@ -13,11 +13,14 @@
     margin: 50px auto;
   }
   .filters{
-    //background: #fff;
     grid-area: filter;
   }
   .tickets{
     display: grid;
     grid-area: tickets;
+  }
+  @media (max-width: 777px){
+    display: flex;
+    flex-direction: column;
   }
 }
