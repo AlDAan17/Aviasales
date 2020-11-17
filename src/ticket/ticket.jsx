@@ -1,8 +1,8 @@
 import React from "react";
 import './ticket.scss';
-import minToHours from '../Services/minutes-to-hours';
-import travelTime from '../Services/travel-time';
-import calculateStops from '../Services/calculate-stops';
+import minToHours from '../services/minutes-to-hours';
+import travelTime from '../services/travel-time';
+import calculateStops from '../services/calculate-stops';
 
 function Ticket({ price, carrier, segments }) {
     const ways = segments.map((way) => {

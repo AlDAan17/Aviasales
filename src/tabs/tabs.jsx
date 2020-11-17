@@ -12,10 +12,10 @@ function Tabs({activeTab, setActiveTab}) {
             onChange={(event) => setActiveTab(event.target.value)}
             className="tickets__button"
         >
-            <Radio.Button className="tickets__button-item" value={1}>
+            <Radio.Button className="tickets__button-item" value="cheapest">
                 самый дешевый
             </Radio.Button>
-            <Radio.Button className="tickets__button-item" value={2}>
+            <Radio.Button className="tickets__button-item" value="fastest">
                 самый быстрый
             </Radio.Button>
         </Radio.Group>
