@@ -1,14 +1,14 @@
-async function request(url, options={}){
+async function request(url, options = {}) {
     let body;
-    try{
+    try {
         const res = await fetch(url, options);
-        if(!res.ok){
+        if (!res.ok) {
             throw Error(`Could not fetch ${url}. Status: ${res.status}`);
         }
 
         body = await res.json();
-    }catch (err) {
-        console.log(`Ошибка в request: ${err.message}`)
+    } catch (err) {
+        return request(url, options);
     }
     return body;
 }

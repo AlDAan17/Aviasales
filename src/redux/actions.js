@@ -45,7 +45,6 @@ export const asyncGetTickets = () => {
             const {tickets} = response2;
 
             const ticketsWithIds = tickets.map((ticket) => {
-                // console.log('kek', ticket)
                 const id = `${ticket.price}${ticket.segments[0].duration}${ticket.segments[1].date}`;
                 return {id, ...ticket};
             });
@@ -53,7 +52,7 @@ export const asyncGetTickets = () => {
             dispatch(getTickets(ticketsWithIds));
         }
         catch (e) {
-            console.log('PIZDEC', e)
+            console.log(e)
         }
     };
 };
