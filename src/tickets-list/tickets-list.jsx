@@ -28,14 +28,14 @@ function TicketsList({tickets, error, checkboxes, tab}) {
         return prevCard.price - nextCard.price;
     });
 
-    const elements = ticketsSorted.reduce((acc, ticket) => {
+    const elements = ticketsSorted.map((ticket) => {
         const stopsIn = ticket.segments[0].stops.length;
         const stopsFrom = ticket.segments[1].stops.length;
         if (isNeedRender(stopsIn, checkboxes) || isNeedRender(stopsFrom, checkboxes)) {
-            acc.push(<Ticket key={ticket.id} {...ticket} />);
+            return <Ticket key={ticket.id} {...ticket} />;
         }
-        return acc;
-    }, []);
+        return false;
+    }).filter(Boolean);
 
     if (error) message.error('Impossible to get tickets', 1.3);
 
