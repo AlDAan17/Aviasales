@@ -14,9 +14,9 @@ async function request(url, options = {}) {
 }
 
 export const getIdFromAPI = () => {
-    return request(`https://aviasales-test-api.java-mentor.com/search`);
+    return request(`https://front-test.beta.aviasales.ru/search`);
 }
 
 export const getTicketsFromAPI = (searchId) => {
-    return request(`https://aviasales-test-api.java-mentor.com/tickets?searchId=${searchId}`);
+    return request(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
 }

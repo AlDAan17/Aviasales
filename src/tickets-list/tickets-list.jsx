@@ -36,13 +36,13 @@ function TicketsList({tickets, error, checkboxes, tab, successfulDownload}) {
             return <Ticket key={ticket.id} {...ticket} />;
         }
         return false;
-    }).filter(Boolean);
+    }).filter(Boolean).slice(0, 5);
 
     if (error) message.error('Не получилось получить билеты', 1.3);
 
     if (!elements.length) {
         return (
-            <Alert message={error || !successfulDownload ? "Рейсов, подходящих под заданные параметры, не найдено" : "Загрузка..."}
+            <Alert message={successfulDownload || error ? "Рейсов, подходящих под заданные параметры, не найдено" : "Загрузка..."}
                    type='info'
                    style={{marginTop: '20px'}}
             />

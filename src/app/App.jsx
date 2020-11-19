@@ -7,6 +7,7 @@ import Tabs from "../tabs";
 import TicketsList from "../tickets-list";
 import './App.scss';
 import {asyncGetTickets} from "../redux/actions";
+import Loading from "../loading/loading";
 
 const App = ({dispatch}) => {
     dispatch(asyncGetTickets());
@@ -20,6 +21,7 @@ const App = ({dispatch}) => {
                 <Tabs/>
                 <TicketsList/>
             </section>
+            <Loading/>
         </div>
     );
 }
