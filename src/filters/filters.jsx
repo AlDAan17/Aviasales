@@ -1,5 +1,6 @@
 import React from "react";
 import './filters.scss';
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {showAll, showNothing, showOne, showThree, showTwo} from "../redux/actions";
 
@@ -47,5 +48,10 @@ const Filters = ({checkboxes, dispatch}) => {
 const mapStateToProps = (state) =>({
     checkboxes: {...state.checkboxes},
 });
+
+Filters.propTypes = {
+    checkboxes: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
+    dispatch: PropTypes.func.isRequired,
+}
 
 export default connect(mapStateToProps)(Filters);

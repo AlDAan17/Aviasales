@@ -1,5 +1,6 @@
 import React from "react";
 import './ticket.scss';
+import PropTypes from 'prop-types';
 import minToHours from '../services/minutes-to-hours';
 import travelTime from '../services/travel-time';
 import calculateStops from '../services/calculate-stops';
@@ -32,5 +33,16 @@ function HeadAndValue({ head, value }) {
         </div>
     );
 }
+
+Ticket.propTypes = {
+    price: PropTypes.number.isRequired,
+    carrier: PropTypes.string.isRequired,
+    segments: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+HeadAndValue.propTypes = {
+    head: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
 
 export default Ticket;

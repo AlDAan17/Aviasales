@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { message, Alert } from 'antd';
 import './tickets-list.scss'
 import Ticket from "../ticket";
 
-function TicketsList({tickets, error, checkboxes, tab}) {
+function TicketsList({tickets, error, checkboxes, tab, successfulDownload}) {
 
     const isNeedRender =(numberOfStops, specificCheckboxes) => {
         switch (numberOfStops) {
@@ -37,12 +38,17 @@ function TicketsList({tickets, error, checkboxes, tab}) {
         return false;
     }).filter(Boolean);
 
-    if (error) message.error('Impossible to get tickets', 1.3);
+    if (error) message.error('Не получилось получить билеты', 1.3);
 
-    return(
-        !elements.length ? <Alert message="Рейсов, подходящих под заданные параметры, не найдено" type='info' style={{marginTop: '20px'}}/>
-        : <div>{elements}</div>
-    )
+    if (!elements.length) {
+        return (
+            <Alert message={error || !successfulDownload ? "Рейсов, подходящих под заданные параметры, не найдено" : "Загрузка..."}
+                   type='info'
+                   style={{marginTop: '20px'}}
+            />
+        )
+    }
+    return <div>{elements}</div>
 }
 
 function mapStateToProps(state){
@@ -51,7 +57,17 @@ function mapStateToProps(state){
         checkboxes:state.checkboxes,
         tab:state.tab,
         error:state.error,
+        successfulDownload: state.successfulDownload,
     }
 }
+
+TicketsList.propTypes = {
+    tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
+    checkboxes: PropTypes.objectOf(PropTypes.bool).isRequired,
+    tab: PropTypes.string.isRequired,
+    successfulDownload: PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired,
+    dispatch: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps)(TicketsList);

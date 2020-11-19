@@ -30,9 +30,14 @@ export const selectTab = (selected) => ({
     selected,
 });
 
-const getTickets = (tickets) => ({
-    type: 'GET_TICKETS',
+const ticketsReceived = (tickets, stop) => ({
+    type: 'TICKETS_RECEIVED',
     tickets,
+    stop,
+});
+
+const ticketsNotReceived = () => ({
+    type: 'TICKETS_NOT_RECEIVED',
 });
 
 export const asyncGetTickets = () => {
@@ -40,19 +45,17 @@ export const asyncGetTickets = () => {
         try {
             const response = await getIdFromAPI();
             const {searchId} = response;
+                const response2 = await getTicketsFromAPI(searchId);
+                const {tickets, stop} = response2;
+                const ticketsWithIds = tickets.map((ticket) => {
+                    const id = `${ticket.price}${ticket.segments[0].duration}${ticket.segments[1].date}`;
+                    return {id, ...ticket};
+                });
 
-            const response2 = await getTicketsFromAPI(searchId);
-            const {tickets} = response2;
+                dispatch(ticketsReceived(ticketsWithIds, stop));
 
-            const ticketsWithIds = tickets.map((ticket) => {
-                const id = `${ticket.price}${ticket.segments[0].duration}${ticket.segments[1].date}`;
-                return {id, ...ticket};
-            });
-
-            dispatch(getTickets(ticketsWithIds));
-        }
-        catch (e) {
-            console.log(e)
+        } catch (e) {
+            dispatch(ticketsNotReceived());
         }
     };
 };

@@ -18,7 +18,12 @@
 
     .filter__item {
       display: block;
-      margin-top: 22px;
+      margin: 6px 0 6px 0;
+      padding: 10px 0 10px 0;
+      transition: background .2s;
+      &:hover{
+        background: #f8fcff;
+      }
     }
 
     .checkbox {

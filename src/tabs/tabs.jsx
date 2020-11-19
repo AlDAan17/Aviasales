@@ -1,6 +1,7 @@
 import React from "react";
 import './tabs.scss';
 import 'antd/dist/antd.css';
+import PropTypes from 'prop-types';
 import { Radio } from 'antd';
 import { connect } from 'react-redux';
 import {selectTab} from "../redux/actions";
@@ -31,5 +32,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     selectTabDispatch: (value) => dispatch(selectTab(value)),
 });
+
+Tabs.propTypes = {
+    activeTab: PropTypes.string.isRequired,
+    selectTabDispatch: PropTypes.func.isRequired,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

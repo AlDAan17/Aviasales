@@ -1,6 +1,7 @@
-import React from 'react';
+import React  from 'react';
 import { connect } from 'react-redux';
-import logo from './../../src/images/logo.svg'
+import PropTypes from 'prop-types';
+import logo from "../images/logo.svg"
 import Filters from "../filters";
 import Tabs from "../tabs";
 import TicketsList from "../tickets-list";
@@ -22,5 +23,9 @@ const App = ({dispatch}) => {
         </div>
     );
 }
+
+App.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+};
 
 export default connect()(App);
