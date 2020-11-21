@@ -29,14 +29,14 @@ function TicketsList({tickets, error, checkboxes, tab, successfulDownload}) {
         return prevCard.price - nextCard.price;
     });
 
-    const elements = ticketsSorted.map((ticket) => {
+    const elements = ticketsSorted.reduce((acc, ticket) => {
         const stopsIn = ticket.segments[0].stops.length;
         const stopsFrom = ticket.segments[1].stops.length;
         if (isNeedRender(stopsIn, checkboxes) || isNeedRender(stopsFrom, checkboxes)) {
-            return <Ticket key={ticket.id} {...ticket} />;
+            acc.push(<Ticket key={ticket.id} {...ticket} />);
         }
-        return false;
-    }).filter(Boolean).slice(0, 5);
+        return acc;
+    }, []).slice(0, 5);
 
     if (error) message.error('Не получилось получить билеты', 1.3);
 

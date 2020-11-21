@@ -9,45 +9,36 @@ const Filters = ({checkboxes, dispatch}) => {
         <div className="filter">
             <h3 className="filter__header">количество пересадок</h3>
             <div className="filter__content">
-                <label className="filter__item">
-                    <input type="checkbox" className="checkbox"
-                           checked={checkboxes.all}
-                           onChange={(event) => dispatch(showAll(event.target.checked))}/>
-                    <span className="checkbox__text">Все</span>
-                </label>
-                <label className="filter__item">
-                    <input type="checkbox" className="checkbox"
-                           checked={checkboxes.nothing}
-                           onChange={(event) => dispatch(showNothing(event.target.checked))}
-                    />
-                    <span className="checkbox__text">Без пересадок</span>
-                </label>
-                <label className="filter__item">
-                    <input type="checkbox" className="checkbox"
-                           checked={checkboxes.one}
-                           onChange={(event) => dispatch(showOne(event.target.checked))}/>
-                    <span className="checkbox__text">1 пересадка</span>
-                </label>
-                <label className="filter__item">
-                    <input type="checkbox" className="checkbox"
-                           checked={checkboxes.two}
-                           onChange={(event) => dispatch(showTwo(event.target.checked))}/>
-                    <span className="checkbox__text">2 пересадки</span>
-                </label>
-                <label className="filter__item">
-                    <input type="checkbox" className="checkbox"
-                           checked={checkboxes.three}
-                           onChange={(event) => dispatch(showThree(event.target.checked))}/>
-                    <span className="checkbox__text">3 пересадки</span>
-                </label>
+                <CheckboxLabel checkedItem={checkboxes.all} onChangeFunc={(event) => dispatch(showAll(event.target.checked))} transfers="Все"/>
+                <CheckboxLabel checkedItem={checkboxes.nothing} onChangeFunc={(event) => dispatch(showNothing(event.target.checked))} transfers="Без пересадок"/>
+                <CheckboxLabel checkedItem={checkboxes.one} onChangeFunc={(event) => dispatch(showOne(event.target.checked))} transfers="1 пересадка"/>
+                <CheckboxLabel checkedItem={checkboxes.two} onChangeFunc={(event) => dispatch(showTwo(event.target.checked))} transfers="2 пересадки"/>
+                <CheckboxLabel checkedItem={checkboxes.three} onChangeFunc={(event) => dispatch(showThree(event.target.checked))} transfers="3 пересадки"/>
             </div>
         </div>
+    )
+}
+
+const CheckboxLabel = ({checkedItem, onChangeFunc, transfers}) =>{
+    return(
+        <label className="filter__item">
+            <input type="checkbox" className="checkbox"
+                   checked={checkedItem}
+                   onChange={onChangeFunc}/>
+            <span className="checkbox__text">{transfers}</span>
+        </label>
     )
 }
 
 const mapStateToProps = (state) =>({
     checkboxes: {...state.checkboxes},
 });
+
+CheckboxLabel.propTypes = {
+    checkedItem: PropTypes.bool.isRequired,
+    onChangeFunc:PropTypes.func.isRequired,
+    transfers:PropTypes.string.isRequired
+}
 
 Filters.propTypes = {
     checkboxes: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,

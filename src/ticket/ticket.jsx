@@ -9,9 +9,9 @@ function Ticket({ price, carrier, segments }) {
     const ways = segments.map((way) => {
         return (
             <React.Fragment key={way.date}>
-                <HeadAndValue head={`${way.origin}-${way.destination}`} value={travelTime(way.date, way.duration)} />
-                <HeadAndValue head="В ПУТИ" value={minToHours(way.duration)} />
-                <HeadAndValue head={calculateStops(way.stops)} value={way.stops.join(', ')} />
+                <CardRow head={`${way.origin}-${way.destination}`} value={travelTime(way.date, way.duration)} />
+                <CardRow head="В ПУТИ" value={minToHours(way.duration)} />
+                <CardRow head={calculateStops(way.stops)} value={way.stops.join(', ')} />
             </React.Fragment>
         );
     });
@@ -25,7 +25,7 @@ function Ticket({ price, carrier, segments }) {
     );
 }
 
-function HeadAndValue({ head, value }) {
+function CardRow({ head, value }) {
     return (
         <div className="ticket__item">
             <span className="ticket__item-head">{head}</span>
@@ -40,7 +40,7 @@ Ticket.propTypes = {
     segments: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-HeadAndValue.propTypes = {
+CardRow.propTypes = {
     head: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };

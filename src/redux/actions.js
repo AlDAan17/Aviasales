@@ -57,8 +57,7 @@ export const asyncGetTickets = () => {
             const {searchId} = response;
 
             while (true) {
-                const response2 = await getTicketsFromAPI(searchId);
-                const {tickets, stop} = response2;
+                const {tickets, stop} = await getTicketsFromAPI(searchId);
                 const ticketsWithIds = tickets.map((ticket) => {
                     const id = `${ticket.price}${ticket.segments[0].duration}${ticket.segments[1].date}`;
                     return {id, ...ticket};
